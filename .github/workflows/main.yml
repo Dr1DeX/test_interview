@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - '**'
+      - staging
   pull_request:
     branches:
       - main
@@ -26,15 +26,9 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-      env:
-        POETRY_HOME: $HOME/.local
-    - name: Add Poetry to PATH
-      run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-
     - name: Install dependencies
       run: |
         poetry install --no-interaction --no-root
-
     - name: Run tests
       run: |
         poetry run pytest tests
