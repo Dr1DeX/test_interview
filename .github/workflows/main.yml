@@ -16,7 +16,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -26,9 +26,15 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.local/bin:$PATH"
     - name: Install dependencies
       run: |
         poetry install --no-interaction --no-root
+    - name: Install Playwright Browsers
+      run: |
+        poetry run playwright install chromium
     - name: Run tests
+      env:
+        PLAYWRIGHT_BROWSERS_PATH: 0
       run: |
         poetry run pytest tests
