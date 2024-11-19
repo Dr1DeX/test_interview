@@ -4,9 +4,12 @@ version = "0.1.0"
 description = ""
 authors = ["Dr1DeX"]
 readme = "README.md"
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pydantic = "^2.9.2"
+pytest = "^8.3.3"
 
 
 [build-system]
